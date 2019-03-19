@@ -4,7 +4,8 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { 
   HEROES_SCREEN_NAME,
   COMICS_SCREEN_NAME,
-  STORIES_SCREEN_NAME
+  STORIES_SCREEN_NAME,
+  SIDEDRAWER_SCREEN_NAME
 } from '../../constants';
 
 const startTabs = () => {
@@ -19,7 +20,7 @@ const startTabs = () => {
               sideMenu: {
                 left: {
                   component: {
-                    name: 'awesome-places.SideDrawerScreen',
+                    name: SIDEDRAWER_SCREEN_NAME,
                   }
                 },
                 center: {
