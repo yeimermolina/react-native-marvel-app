@@ -27,6 +27,22 @@ export default function Wrapper(WrappedComponent) {
                     sideMenu: {
                         left: {
                             visible: true
+                        },
+                        right: {
+                            visible: false
+                        }
+                    }
+                });
+            }
+
+            if (buttonId === 'nav_user_filters') {
+                Navigation.mergeOptions(this.props.componentId, {
+                    sideMenu: {
+                        right: {
+                            visible: true
+                        },
+                        left: {
+                            visible: false
                         }
                     }
                 });
