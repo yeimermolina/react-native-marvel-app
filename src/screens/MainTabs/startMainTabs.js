@@ -5,15 +5,18 @@ import {
   HEROES_SCREEN_NAME,
   COMICS_SCREEN_NAME,
   STORIES_SCREEN_NAME,
-  SIDEDRAWER_SCREEN_NAME
+  SIDEDRAWER_SCREEN_NAME,
+  FILTERSDRAWER_SCREEN_NAME
 } from '../../constants';
+import { getHeroes } from '../../store/actions';
 
 const startTabs = () => {
     Promise.all([
         Icon.getImageSource(Platform.OS === 'android' ? 'md-body' : 'ios-body', 30),
         Icon.getImageSource(Platform.OS === 'android' ? 'md-paper' : 'ios-paper', 30),
         Icon.getImageSource(Platform.OS === 'android' ? 'md-star' : 'ios-star', 30),
-        Icon.getImageSource(Platform.OS === 'android' ? 'md-menu' : 'ios-menu', 30)
+        Icon.getImageSource(Platform.OS === 'android' ? 'md-menu' : 'ios-menu', 30),
+        Icon.getImageSource(Platform.OS === 'android' ? 'md-search' : 'ios-search', 30)
     ]).then(sources => {
           Navigation.setRoot({
             root: {
@@ -38,6 +41,7 @@ const startTabs = () => {
                           children: [
                             {
                               component: {
+                                id: 'heroes',
                                 name: HEROES_SCREEN_NAME,
                                 options: {
                                     topBar: {
@@ -51,7 +55,15 @@ const startTabs = () => {
                                             color: 'white',
                                             title: 'Menu'
                                             }
-                                        ]
+                                        ],
+                                        rightButtons: [
+                                          {
+                                            id: 'nav_user_filters',
+                                            icon: sources[4],
+                                            color: 'white',
+                                            title: 'Filters',
+                                        }
+                                      ]
                                   },
                                   bottomTab: {
                                     fontSize: 12,
@@ -70,6 +82,7 @@ const startTabs = () => {
                           children: [
                             {
                               component: {
+                                id: 'comics',
                                 name: COMICS_SCREEN_NAME,
                                 options: {
                                   topBar: {
@@ -83,7 +96,15 @@ const startTabs = () => {
                                         color: 'white',
                                         title: 'Menu'
                                         }
-                                    ]
+                                    ],
+                                    rightButtons: [
+                                      {
+                                        id: 'nav_user_filters',
+                                        icon: sources[4],
+                                        color: 'white',
+                                        title: 'Filters'
+                                    }
+                                  ]
                                 },
                                   bottomTab: {
                                     id: 'comics',
@@ -99,10 +120,11 @@ const startTabs = () => {
                       },
                       {
                         stack: {
-                          id: 'tab2',
+                          id: 'tab3',
                           children: [
                             {
                               component: {
+                                id: 'stories',
                                 name: STORIES_SCREEN_NAME,
                                 options: {
                                   topBar: {
@@ -116,7 +138,15 @@ const startTabs = () => {
                                         color: 'white',
                                         title: 'Menu'
                                         }
-                                    ]
+                                    ],
+                                    rightButtons: [
+                                      {
+                                        id: 'nav_user_filters',
+                                        icon: sources[4],
+                                        color: 'white',
+                                        title: 'Filters'
+                                    }
+                                  ]
                                 },
                                   bottomTab: {
                                     id: 'stories',
@@ -132,7 +162,12 @@ const startTabs = () => {
                       },
                     ],
                   },
-                }
+                },
+                right: {
+                  component: {
+                    name: FILTERSDRAWER_SCREEN_NAME,
+                  }
+                },
               }
             }
           });

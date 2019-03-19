@@ -12,7 +12,8 @@ import {
   COMIC_DETAIL_SCREEN_NAME,
   STORIES_SCREEN_NAME,
   STORY_DETAIL_SCREEN_NAME,
-  SIDEDRAWER_SCREEN_NAME
+  SIDEDRAWER_SCREEN_NAME,
+  FILTERSDRAWER_SCREEN_NAME
 } from './src/constants';
 
 import HomeScreen from './src/screens/Home';
@@ -22,7 +23,8 @@ import ComicsScreen from './src/screens/Comics';
 import ComicDetailScreen from './src/screens/ComicDetail';
 import StoriesScreen from './src/screens/Stories';
 import StoryDetailScreen from './src/screens/StoryDetail';
-import SideDrawerScreen from './src/screens/SideDrawer'
+import SideDrawerScreen from './src/screens/SideDrawer';
+import FiltersDrawerScreen from './src/screens/FiltersDrawer';
 
 const store = configureStore()
 
@@ -49,6 +51,7 @@ Navigation.registerComponent(COMIC_DETAIL_SCREEN_NAME, () => WrappedComponent(Co
 Navigation.registerComponent(STORIES_SCREEN_NAME, () => WrappedComponent(StoriesScreen));
 Navigation.registerComponent(STORY_DETAIL_SCREEN_NAME, () => WrappedComponent(StoryDetailScreen));
 Navigation.registerComponent(SIDEDRAWER_SCREEN_NAME, () => WrappedComponent(SideDrawerScreen));
+Navigation.registerComponent(FILTERSDRAWER_SCREEN_NAME, () => WrappedComponent(FiltersDrawerScreen));
 
 
 Navigation.events().registerAppLaunchedListener(() => {
