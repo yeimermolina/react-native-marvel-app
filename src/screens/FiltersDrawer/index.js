@@ -4,20 +4,19 @@ import { connect } from 'react-redux';
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 // import Icon from 'react-native-vector-icons/Ionicons';
 import { 
-    nameStartsWithChange, 
     getHeroes,
-    resetPagination
+    resetHeroesFiltersAndPagination,
+    heroNameFilterChange
 } from '../../store/actions';
 
 class SideDrawer extends Component {
+    state = {
+        activeComponentId: 'heroes'
+    }
+
     constructor(props) {
         super(props);
-        state = {
-            activeComponentId: 'heroes'
-        }
-
         screenEventListener = Navigation.events().registerComponentDidAppearListener( ( { componentId } ) => {
-            // Check which tab screen the usar was
             if (['heroes', 'comics', 'stories'].includes(componentId)) {
                 this.setState({ activeComponentId: componentId })
             }
@@ -28,18 +27,39 @@ class SideDrawer extends Component {
     }
 
     handleSearchPress = () => {
-        this.props.resetPagination();
         switch (this.state.activeComponentId) {
             case 'heroes':
+                this.props.resetHeroesFiltersAndPagination();
                 this.props.getHeroes();
-                break
+                break;
             default:
                 this.props.getHeroes();
-                break
+                break;
+        }
+    }
+
+    handleInputName = (name) => {
+        switch (this.state.activeComponentId) {
+            case 'heroes':
+                this.props.heroNameFilterChange(name);
+                break;
+            default:
+                this.props.heroNameFilterChange(name);
+                break;
+        }
+    }
+
+    getInputValue = () => {
+        switch (this.state.activeComponentId) {
+            case 'heroes':
+                return this.props.nameFromHero;
+            default:
+                return this.props.nameFromHero;
         }
     }
 
     render() {
+        const value = this.getInputValue();
         return (
             <View style={styles.container}>
                 <Text style={styles.containerTitle}>Search</Text>
@@ -47,8 +67,8 @@ class SideDrawer extends Component {
                     <Text style={styles.inputLabel}>Name:</Text>
                     <TextInput
                         style={styles.inputField}
-                        onChangeText={(name) => this.props.nameStartsWithChange(name)}
-                        value={this.props.name}
+                        onChangeText={(name) => this.handleInputName(name)}
+                        value={value}
                     />
                 </View>
                 <Button 
@@ -94,12 +114,12 @@ const styles = StyleSheet.create({
     }
 });
 
-const mapStateToProps = ({ filters }) => ({
-    name: filters.nameStartsWith
+const mapStateToProps = ({ heroes }) => ({
+    nameFromHero: heroes.filters.nameStartsWith
 })
 
 export default connect(mapStateToProps, { 
-    nameStartsWithChange,
     getHeroes,
-    resetPagination
+    resetHeroesFiltersAndPagination,
+    heroNameFilterChange
 })(SideDrawer);

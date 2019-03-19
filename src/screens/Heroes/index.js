@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
-import { FlatList, ScrollView } from 'react-native';
+import { FlatList, ScrollView, Button, Text } from 'react-native';
 
 import { HEROE_DETAIL_SCREEN_NAME } from '../../constants';
 import { HeroeCard } from '../../components';
-import { getHeroes } from '../../store/actions';
+import { getHeroes, heroIncreaseOffset } from '../../store/actions';
 import Wrapper from '../../hoc/Wrapper';
 
 class Heroes extends Component {
@@ -36,6 +36,11 @@ class Heroes extends Component {
     });
   }
 
+  onLoadMoreHeroes = () => {
+    this.props.heroIncreaseOffset();
+    this.props.getHeroes()
+  }
+
   componentDidMount() {
     this.props.getHeroes();
   }
@@ -48,13 +53,28 @@ class Heroes extends Component {
           renderItem={this.renderHero.bind(this)}
           keyExtractor={(hero) => hero.id.toString()}
         />
+        {
+          this.props.noResults ? (
+            <Text>No Results</Text>
+          ) : (
+            <Button 
+              title="Load More Results"
+              onPress={this.onLoadMoreHeroes}
+            />
+          )
+        }
+        
       </ScrollView>
     )
   }
 }
 
 const mapStateToProps = ({ heroes }) => ({
-  heroes: heroes.heroesList
+  heroes: heroes.heroesList,
+  noResults: heroes.noResults
 })
 
-export default connect(mapStateToProps, { getHeroes })(Wrapper(Heroes));
+export default connect(mapStateToProps, { 
+  getHeroes,
+  heroIncreaseOffset
+})(Wrapper(Heroes));
