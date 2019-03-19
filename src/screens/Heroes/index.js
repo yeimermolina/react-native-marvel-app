@@ -6,28 +6,29 @@ import { FlatList, ScrollView } from 'react-native';
 import { HEROE_DETAIL_SCREEN_NAME } from '../../constants';
 import { HeroeCard } from '../../components';
 import { getHeroes } from '../../store/actions';
+import Wrapper from '../../hoc/Wrapper';
 
 class Heroes extends Component {
-  renderHeroe = (heroe) => {
+  renderHero = (hero) => {
     return (
       <HeroeCard 
-        heroe={heroe.item} 
-        onPress={() => this.handleSelectedHeroe(heroe.item.id, heroe.item.name)} 
+        heroe={hero.item} 
+        onPress={() => this.handleSelectedHeroe(hero.item.id, hero.item.name)} 
       />
     )
   }
 
-  handleSelectedHeroe = (heroeId, heroeName) => {
+  handleSelectedHeroe = (heroId, heroName) => {
     Navigation.push(this.props.componentId, {
       component: {
         name: HEROE_DETAIL_SCREEN_NAME,
         passProps: {
-          heroeId: heroeId
+          heroId: heroId
         },
         options: {
           topBar: {
             title: {
-              text: heroeName
+              text: heroName
             }
           }
         }
@@ -44,8 +45,8 @@ class Heroes extends Component {
       <ScrollView>
         <FlatList
           data={this.props.heroes}
-          renderItem={this.renderHeroe.bind(this)}
-          keyExtractor={(heroe) => heroe.id.toString()}
+          renderItem={this.renderHero.bind(this)}
+          keyExtractor={(hero) => hero.id.toString()}
         />
       </ScrollView>
     )
@@ -56,4 +57,4 @@ const mapStateToProps = ({ heroes }) => ({
   heroes: heroes.heroesList
 })
 
-export default connect(mapStateToProps, { getHeroes })(Heroes);
+export default connect(mapStateToProps, { getHeroes })(Wrapper(Heroes));

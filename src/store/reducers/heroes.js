@@ -1,7 +1,8 @@
-import { SET_HEROES } from '../actions/actionTypes';
+import { SET_HEROES, SET_HERO_DETAIL } from '../actions/actionTypes';
 
 const initialState = {
-    heroesList: []
+    heroesList: [],
+    heroDetail: {}
 }
 
 export default (state = initialState, action) => {
@@ -10,6 +11,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 heroesList: action.payload
+            }
+        case SET_HERO_DETAIL:
+            return {
+                ...state,
+                heroDetail: action.payload
             }
         default:
             return state;

@@ -12,3 +12,4 @@ export const AUTH_SET_TOKEN = "AUTH_SET_TOKEN";
 export const AUTH_REMOVE_TOKEN = "AUTH_REMOVE_TOKEN";
 
 export const SET_HEROES = "SET_HEROES";
+export const SET_HERO_DETAIL = "SET_HERO_DETAIL";
