@@ -4,11 +4,13 @@ import thunk from 'redux-thunk';
 import placesReducer from './reducers/places';
 import uiReducer from './reducers/ui';
 import authReducer from './reducers/auth';
+import heroesReducer from './reducers/heroes';
 
 const rootReducer = combineReducers({
     places: placesReducer,
     ui: uiReducer,
-    auth: authReducer
+    auth: authReducer,
+    heroes: heroesReducer
 });
 
 const store = () => {
