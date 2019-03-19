@@ -1,30 +1,32 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
-const HeroeCard = ({ heroe }) => (
-    <View style={styles.cardContainer}>
-        <View style={styles.imageContainer}>
-            <Image 
-                source={
-                    { uri: heroe.thumbnail.path + "." + heroe.thumbnail.extension }
-                } 
-                style={styles.heroeImage}
-            />
+const HeroeCard = ({ heroe, onPress }) => (
+    <TouchableWithoutFeedback onPress={onPress}>
+        <View style={styles.cardContainer}>
+            <View style={styles.imageContainer}>
+                <Image 
+                    source={
+                        { uri: heroe.thumbnail.path + "." + heroe.thumbnail.extension }
+                    } 
+                    style={styles.heroeImage}
+                />
+            </View>
+            <View style={styles.heroNameContainer}>
+                <Text style={styles.heroName}>{heroe.name}</Text>
+            </View>
+            <View style={styles.heroDescriptionContainer}>
+                <Text style={styles.heroDescription}>{heroe.description || 'Description not available'}</Text>
+            </View>
         </View>
-        <View style={styles.heroNameContainer}>
-            <Text style={styles.heroName}>{heroe.name}</Text>
-        </View>
-        <View style={styles.heroDescriptionContainer}>
-            <Text style={styles.heroDescription}>{heroe.description}</Text>
-        </View>
-    </View>
+    </TouchableWithoutFeedback>
 )
 
 const styles = StyleSheet.create({
     cardContainer: {
         paddingBottom: 10,
         borderBottomColor: '#f1f1f1',
-        borderBottomWidth: 1,
+        borderBottomWidth: 10,
         backgroundColor: 'black'
     },
     imageContainer: {
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
     heroDescription: {
         fontSize: 20,
         color: 'white',
-        textAlign: 'justify'
+        textAlign: 'center'
     }
 })
 
