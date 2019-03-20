@@ -1,1 +1,2 @@
-export * from './HeroeCard';
+export * from './HeroCard';
+export * from './HeroItem';
