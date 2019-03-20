@@ -4,12 +4,13 @@ import {
     LOAD_MORE_HEROES,
     RESET_HEROES_FILTERS_AND_PAGINATION,
     HERO_NAME_FILTER_CHANGED,
-    HERO_INCREASE_OFFSET
+    HERO_INCREASE_OFFSET,
+    RESET_HERO_DETAIL
 } from '../actions/actionTypes';
 
 const initialState = {
     heroesList: [],
-    heroDetail: {},
+    heroDetail: null,
     noResults: false,
     filters: {
         nameStartsWith: ''
@@ -64,6 +65,11 @@ export default (state = initialState, action) => {
                     ...state.pagination,
                     offset: state.pagination.offset + 20
                 }
+            }
+        case RESET_HERO_DETAIL: 
+            return {
+                ...state,
+                heroDetail: null
             }
         default:
             return state;

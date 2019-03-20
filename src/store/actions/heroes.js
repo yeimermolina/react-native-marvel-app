@@ -6,7 +6,8 @@ import {
     LOAD_MORE_HEROES,
     RESET_HEROES_FILTERS_AND_PAGINATION,
     HERO_NAME_FILTER_CHANGED,
-    HERO_INCREASE_OFFSET
+    HERO_INCREASE_OFFSET,
+    RESET_HERO_DETAIL
 } from './actionTypes';
 import { uiStartLoading, uiStopLoading } from './ui';
 
@@ -33,12 +34,14 @@ export const getHeroes = () => async (dispatch, getStore) => {
 }
 
 export const getHero = (heroId) => async dispatch => {
+    dispatch(uiStartLoading());
     try {
         const { data } = await axios.get(`${heroes}/${heroId}`);
         dispatch(setHeroeDetail(data.data.results[0]));
     } catch {
         console.log('error', e);
     }
+    dispatch(uiStopLoading());
 }
 
 const setHeroes = (heroes) => {
@@ -58,6 +61,10 @@ const loadMoreHeroes = (heroes) => {
 const setHeroeDetail = (hero) => ({
     type: SET_HERO_DETAIL,
     payload: hero
+})
+
+export const resetHeroeDetail = () => ({
+    type: RESET_HERO_DETAIL
 })
 
 export const resetHeroesFiltersAndPagination = () => ({
