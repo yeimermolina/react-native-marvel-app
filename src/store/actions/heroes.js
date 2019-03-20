@@ -8,8 +8,10 @@ import {
     HERO_NAME_FILTER_CHANGED,
     HERO_INCREASE_OFFSET
 } from './actionTypes';
+import { uiStartLoading, uiStopLoading } from './ui';
 
 export const getHeroes = () => async (dispatch, getStore) => {
+    dispatch(uiStartLoading());
     try {
         const filters = getStore().heroes.filters;
         const pagination = getStore().heroes.pagination;
@@ -24,10 +26,10 @@ export const getHeroes = () => async (dispatch, getStore) => {
         } else {
             dispatch(setHeroes(data.data.results));
         }
-        
     } catch (e) {
         console.log('error', e.response || e);
     }
+    dispatch(uiStopLoading());
 }
 
 export const getHero = (heroId) => async dispatch => {

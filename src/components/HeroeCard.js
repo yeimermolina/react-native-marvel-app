@@ -25,8 +25,6 @@ const HeroeCard = ({ heroe, onPress }) => (
 const styles = StyleSheet.create({
     cardContainer: {
         paddingBottom: 10,
-        borderBottomColor: '#f1f1f1',
-        borderBottomWidth: 10,
         backgroundColor: 'black'
     },
     imageContainer: {
