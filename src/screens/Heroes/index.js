@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { View, FlatList, ScrollView, Button, Text, ActivityIndicator, StyleSheet } from 'react-native';
 
 import { HEROE_DETAIL_SCREEN_NAME } from '../../constants';
-import { HeroeItem } from '../../components';
+import { HeroeItem, Separator } from '../../components';
 import { getHeroes, heroIncreaseOffset } from '../../store/actions';
 import Wrapper from '../../hoc/Wrapper';
 
@@ -34,18 +34,6 @@ class Heroes extends Component {
         }
       }
     });
-  }
-
-  renderSeparator = () => {
-    return (
-      <View
-        style={{
-          height: 1,
-          width: "100%",
-          backgroundColor: "f1f1f1"
-        }}
-      />
-    );
   }
 
   //Check why loading Prop is not true
@@ -91,7 +79,7 @@ class Heroes extends Component {
           data={this.props.heroes}
           renderItem={this.renderHero.bind(this)}
           keyExtractor={(hero) => hero.id.toString()}
-          ItemSeparatorComponent={this.renderSeparator}
+          ItemSeparatorComponent={() => <Separator />}
           // ListFooterComponent={this.renderFooter}
         />
         {

@@ -20,6 +20,7 @@ class HeroeDetail extends Component {
   }
 
   componentDidDisappear() {
+    Navigation.pop(this.props.componentId);
     this.props.resetHeroeDetail();
   }
 
