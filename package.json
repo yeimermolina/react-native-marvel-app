@@ -13,6 +13,7 @@
     "md5": "^2.2.1",
     "react": "16.6.3",
     "react-native": "^0.58.6",
+    "react-native-elements": "^1.1.0",
     "react-native-image-picker": "^0.28.0",
     "react-native-maps": "^0.23.0",
     "react-native-navigation": "^2.13.1",
