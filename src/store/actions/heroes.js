@@ -37,7 +37,11 @@ export const getHero = (heroId) => async dispatch => {
     dispatch(uiStartLoading());
     try {
         const { data } = await axios.get(`${heroes}/${heroId}`);
-        dispatch(setHeroeDetail(data.data.results[0]));
+        const comics = await axios.get(`${heroes}/${heroId}/comics`);
+        dispatch(setHeroeDetail({
+            ...data.data.results[0],
+            comics: comics.data.data.results
+        }));
     } catch {
         console.log('error', e);
     }

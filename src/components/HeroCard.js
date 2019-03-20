@@ -1,6 +1,14 @@
 import React from 'react';
-import { Card } from 'react-native-elements';
-import { Text, StyleSheet } from 'react-native';
+import { Card, ListItem, Text } from 'react-native-elements';
+import { StyleSheet, FlatList } from 'react-native';
+import { Separator } from './Separator';
+
+const renderComic = ({ item }) => (
+    <ListItem
+        leftAvatar={{ source: { uri: item.thumbnail.path + "." + item.thumbnail.extension }, size: "medium", rounded: false }}
+        title={item.title}
+    />
+)
 
 const HeroCard = ({ hero }) => (
     <Card
@@ -15,6 +23,16 @@ const HeroCard = ({ hero }) => (
             backgroundColor='#03A9F4'
             buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
             title='VIEW NOW' /> */}
+        <FlatList
+          data={hero.comics}
+          renderItem={renderComic}
+          keyExtractor={(comic) => comic.id.toString()}
+          ItemSeparatorComponent={() => <Separator />}
+          ListHeaderComponent={() => (
+              <Text h3>Comics</Text>
+          )}
+          // ListFooterComponent={this.renderFooter}
+        />
     </Card>
 )
 
