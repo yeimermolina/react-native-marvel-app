@@ -4,15 +4,15 @@ import { connect } from 'react-redux';
 import { View, FlatList, ScrollView, Button, Text, ActivityIndicator, StyleSheet } from 'react-native';
 
 import { HEROE_DETAIL_SCREEN_NAME } from '../../constants';
-import { HeroeCard } from '../../components';
+import { HeroeItem } from '../../components';
 import { getHeroes, heroIncreaseOffset } from '../../store/actions';
 import Wrapper from '../../hoc/Wrapper';
 
 class Heroes extends Component {
   renderHero = (hero) => {
     return (
-      <HeroeCard 
-        heroe={hero.item} 
+      <HeroeItem 
+        hero={hero.item} 
         onPress={() => this.handleSelectedHeroe(hero.item.id, hero.item.name)} 
       />
     )
@@ -42,7 +42,7 @@ class Heroes extends Component {
         style={{
           height: 1,
           width: "100%",
-          backgroundColor: "blue"
+          backgroundColor: "f1f1f1"
         }}
       />
     );
