@@ -4,8 +4,27 @@ import { connect } from 'react-redux';
 import { ScrollView, ActivityIndicator } from 'react-native';
 import { getComic } from '../../store/actions';
 import { ComicCard } from '../../components';
+import { HEROE_DETAIL_SCREEN_NAME } from '../../constants';
 
 class ComicDetail extends Component {
+  handleSelectHero = (heroId, heroName) => {
+    Navigation.push(this.props.componentId, {
+      component: {
+        name: HEROE_DETAIL_SCREEN_NAME,
+        passProps: {
+          heroId: heroId
+        },
+        options: {
+          topBar: {
+            title: {
+              text: heroName
+            }
+          }
+        }
+      }
+    });
+  }
+
   componentDidMount() {
     if (this.props.comicId) {
       this.props.getComic(this.props.comicId);
@@ -19,6 +38,7 @@ class ComicDetail extends Component {
       card = (
         <ComicCard 
           comic={this.props.comic}
+          onPressHero={this.handleSelectHero}
         />
       );
     }

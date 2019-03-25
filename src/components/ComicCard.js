@@ -3,14 +3,15 @@ import { Card, ListItem, Text } from 'react-native-elements';
 import { FlatList } from 'react-native';
 import { Separator } from './Separator';
 
-const renderHero = ({ item }) => (
+const renderHero = ({ item }, onPressHero) => (
     <ListItem
         leftAvatar={{ source: { uri: item.thumbnail.path + "." + item.thumbnail.extension }, size: "medium", rounded: false }}
         title={item.name}
+        onPress={() => onPressHero(item.id, item.name)}
     />
 )
 
-const ComicCard = ({ comic }) => (
+const ComicCard = ({ comic, onPressHero }) => (
     <Card
         containerStyle={{ margin: 0, padding: 0, borderWidth: 0 }}
         imageStyle={{ height: 300 }}
@@ -20,7 +21,7 @@ const ComicCard = ({ comic }) => (
         </Text>
         <FlatList
           data={comic.heroes}
-          renderItem={renderHero}
+          renderItem={(hero) => renderHero(hero, onPressHero)}
           keyExtractor={(hero) => hero.id.toString()}
           ItemSeparatorComponent={() => <Separator />}
           ListHeaderComponent={() => (
