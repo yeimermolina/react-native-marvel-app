@@ -3,14 +3,15 @@ import { Card, ListItem, Text } from 'react-native-elements';
 import { StyleSheet, FlatList } from 'react-native';
 import { Separator } from './Separator';
 
-const renderComic = ({ item }) => (
+const renderComic = ({ item }, onPressComic) => (
     <ListItem
         leftAvatar={{ source: { uri: item.thumbnail.path + "." + item.thumbnail.extension }, size: "medium", rounded: false }}
         title={item.title}
+        onPress={() => onPressComic(item.id, item.title)}
     />
 )
 
-const HeroCard = ({ hero }) => (
+const HeroCard = ({ hero, onPressComic }) => (
     <Card
         containerStyle={{ margin: 0, padding: 0, borderWidth: 0 }}
         imageStyle={{ height: 300 }}
@@ -18,20 +19,14 @@ const HeroCard = ({ hero }) => (
         <Text style={{marginBottom: 10}}>
             {hero.description || 'Description for this hero is not available'}
         </Text>
-        {/* <Button
-            icon={<Icon name='code' color='#ffffff' />}
-            backgroundColor='#03A9F4'
-            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-            title='VIEW NOW' /> */}
         <FlatList
           data={hero.comics}
-          renderItem={renderComic}
+          renderItem={(comic) => renderComic(comic, onPressComic)}
           keyExtractor={(comic) => comic.id.toString()}
           ItemSeparatorComponent={() => <Separator />}
           ListHeaderComponent={() => (
               <Text h3>Comics</Text>
           )}
-          // ListFooterComponent={this.renderFooter}
         />
     </Card>
 )

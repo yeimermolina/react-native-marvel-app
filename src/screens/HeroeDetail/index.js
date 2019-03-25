@@ -4,8 +4,28 @@ import { connect } from 'react-redux';
 import { View, Text, ScrollView, ActivityIndicator } from 'react-native';
 import { getHero } from '../../store/actions';
 import { HeroCard } from '../../components';
+import { COMIC_DETAIL_SCREEN_NAME } from '../../constants';
 
 class HeroeDetail extends Component {
+
+  handleSelectComic = (comicId, comicTitle) => {
+    Navigation.push(this.props.componentId, {
+      component: {
+        name: COMIC_DETAIL_SCREEN_NAME,
+        passProps: {
+          comicId: comicId
+        },
+        options: {
+          topBar: {
+            title: {
+              text: comicTitle
+            }
+          }
+        }
+      }
+    });
+  }
+
   componentDidMount() {
     this.navigationEventListener = Navigation.events().bindComponent(this);
     if (this.props.heroId) {
@@ -32,6 +52,7 @@ class HeroeDetail extends Component {
       card = (
         <HeroCard 
           hero={this.props.hero}
+          onPressComic={this.handleSelectComic}
         />
       );
     }
