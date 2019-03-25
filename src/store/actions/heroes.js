@@ -6,8 +6,7 @@ import {
     LOAD_MORE_HEROES,
     RESET_HEROES_FILTERS_AND_PAGINATION,
     HERO_NAME_FILTER_CHANGED,
-    HERO_INCREASE_OFFSET,
-    RESET_HERO_DETAIL
+    HERO_INCREASE_OFFSET
 } from './actionTypes';
 import { uiStartLoading, uiStopLoading } from './ui';
 
@@ -65,10 +64,6 @@ const loadMoreHeroes = (heroes) => {
 const setHeroeDetail = (hero) => ({
     type: SET_HERO_DETAIL,
     payload: hero
-})
-
-export const resetHeroeDetail = () => ({
-    type: RESET_HERO_DETAIL
 })
 
 export const resetHeroesFiltersAndPagination = () => ({

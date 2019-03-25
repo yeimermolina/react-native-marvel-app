@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { View, Text, ScrollView, ActivityIndicator } from 'react-native';
-import { getHero, resetHeroeDetail } from '../../store/actions';
+import { getHero } from '../../store/actions';
 import { HeroCard } from '../../components';
 
 class HeroeDetail extends Component {
@@ -19,10 +19,11 @@ class HeroeDetail extends Component {
     }
   }
 
-  componentDidDisappear() {
-    Navigation.pop(this.props.componentId);
-    this.props.resetHeroeDetail();
-  }
+  // componentDidDisappear() {
+    // Navigation.pop(this.props.componentId);
+    // Navigation.popTo('heroes');
+    // this.props.resetHeroeDetail();
+  // }
 
   render() {
     let card = <ActivityIndicator size="large" />
@@ -49,6 +50,5 @@ const mapStateToProps = ({ heroes, ui }) => ({
 })
 
 export default connect(mapStateToProps, { 
-  getHero,
-  resetHeroeDetail
+  getHero
 })(HeroeDetail);

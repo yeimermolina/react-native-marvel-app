@@ -8,7 +8,6 @@ import {
   SIDEDRAWER_SCREEN_NAME,
   FILTERSDRAWER_SCREEN_NAME
 } from '../../constants';
-import { getHeroes } from '../../store/actions';
 
 const startTabs = () => {
     Promise.all([

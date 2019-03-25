@@ -3,5 +3,6 @@ export { tryAuth, authGetToken, authAutoSignIn, authLogout } from './auth';
 export { uiStartLoading, uiStopLoading} from './ui';
 
 export * from './heroes';
+export * from './comics';
 export * from './filters';
 export * from './pagination';

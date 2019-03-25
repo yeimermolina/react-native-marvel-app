@@ -1,20 +1,14 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-import placesReducer from './reducers/places';
 import uiReducer from './reducers/ui';
-import authReducer from './reducers/auth';
 import heroesReducer from './reducers/heroes';
-import filtersReducer from './reducers/filters';
-import paginationReducer from './reducers/pagination'
+import comicsReducer from './reducers/comics';
 
 const rootReducer = combineReducers({
-    places: placesReducer,
     ui: uiReducer,
-    auth: authReducer,
     heroes: heroesReducer,
-    filters: filtersReducer,
-    pagination: paginationReducer
+    comics: comicsReducer
 });
 
 const store = () => {

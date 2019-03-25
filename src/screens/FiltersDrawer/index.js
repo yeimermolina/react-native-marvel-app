@@ -16,15 +16,15 @@ class SideDrawer extends Component {
 
     constructor(props) {
         super(props);
-        screenEventListener = Navigation.events().registerComponentDidAppearListener( ( { componentId } ) => {
-            if (['heroes', 'comics', 'stories'].includes(componentId)) {
-                this.setState({ activeComponentId: componentId })
-            }
-        })
+        // screenEventListener = Navigation.events().registerComponentDidAppearListener( ( { componentId } ) => {
+        //     if (['heroes', 'comics', 'stories'].includes(componentId)) {
+        //         this.setState({ activeComponentId: componentId })
+        //     }
+        // })
     }
-    componentWillUnmount() {
-        this.screenEventListener.remove();
-    }
+    // componentWillUnmount() {
+    //     this.screenEventListener.remove();
+    // }
 
     handleSearchPress = () => {
         switch (this.state.activeComponentId) {
